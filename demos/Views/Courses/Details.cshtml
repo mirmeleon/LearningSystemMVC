@@ -1,0 +1,59 @@
+﻿@model   demos.Models.ViewModels.Courses.DetailsCourseViewModel
+@{
+    ViewBag.Title = "Course Details";
+}
+
+<h2>Course Details</h2>
+<table class="table table-striped">
+<tr>
+<th>@Html.DisplayNameFor(model => Model.Name)</th>
+<th>@Html.DisplayNameFor(model => Model.Description)</th>
+<th>@Html.DisplayNameFor(model => Model.StartDate)</th>
+<th>@Html.DisplayNameFor(model => Model.EndDate)</th>
+    <th>Active</th>
+  
+</tr>
+
+    <tr>
+        <td>@Html.DisplayFor(model => Model.Name) </td>
+        <td>@Html.DisplayFor(model => Model.Description)</td>
+        <td>@Html.DisplayFor(model => Model.StartDate) </td>
+        <td>@Html.DisplayFor(model => Model.EndDate)</td>
+  
+  
+    @if (Model.StartDate > DateTime.Today && Model.EndDate > DateTime.Today)
+    {
+        <td style="color:green">Comming...</td>
+    }
+    else if (Model.StartDate < DateTime.Today && Model.EndDate > DateTime.Today)
+    {
+        <td style="color:purple">Active at the moment...</td>
+    }
+    else
+    {
+        <td style="color:red">Finished...</td>
+    }
+   
+</tr>
+
+</table>
+    
+
+
+<br />
+@if (User.Identity.IsAuthenticated && Model.StartDate > DateTime.Now)
+{
+     using (Html.BeginForm("Subscribe", "Users", FormMethod.Post))
+     {
+         <input type="number" value="@Model.Id" hidden="hidden" name="courseId"/>
+         <input type="submit" value="Subscribe in/out" class="btn btn-lg btn-success pull-right"/>
+     }
+}
+
+<br />
+<br />
+<br />
+@Html.ActionLink("Home", "Index", "Home", null, new { @class = "btn btn-lg btn-primary pull-right" })
+
+<br />
+<br />

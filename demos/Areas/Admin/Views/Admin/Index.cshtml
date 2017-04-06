@@ -1,0 +1,50 @@
+﻿@model demos.Models.ViewModels.AdminArea.AdminPageViewModel
+
+@{
+
+    ViewBag.Title = "Admin panel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Welcome to admin area</h2>
+@Html.ActionLink("Add new course", "CreateCourse", null, new { @class = "btn btn-lg btn-success" })
+<br />
+<br />
+
+<div class="row">
+    <div class="col-sm-5 col-lg-offset-1 bordered">
+        <h3>Courses at the moment</h3>
+
+        @foreach (var course in Model.Courses)
+        {
+            
+            <div class="admin-course">
+                <h4>@Html.DisplayFor(model => course.Name) </h4>
+                <h4>@Html.DisplayFor(model => course.StartDate) </h4>
+                @Html.ActionLink("Edit", "EditCourse", new {id = course.Id}, new {@class= "btn btn-lg btn-warning pull-right" })
+                <br />
+                <br />
+
+            </div>
+
+        }
+      
+    </div>
+    <div class="col-sm-5 col-lg-offset-1 bordered">
+        <h3>Users</h3>
+        
+        @foreach (var user in Model.Users)
+        {
+
+            <div class="admin-user">
+                <h4>@Html.DisplayFor(model => user.Name) </h4>
+               
+                @Html.ActionLink("Edit", "EditUser", new { id = user.Id }, new { @class = "btn btn-lg btn-warning pull-right" })
+                <br />
+                <br />
+
+            </div>
+
+        }
+    </div>
+</div>

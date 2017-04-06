@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+
+namespace _3EmployeesFullInfo
+{
+    using Models;
+
+    class Program
+    {
+        static void Main()
+        {
+            using (var context = new SoftUniContext())
+            {
+
+                ////11.	Departments with more than 5 employees
+                var departments = context.Departments.Where(dep => dep.Employees.Count > 5)
+                                                    .OrderBy(dep => dep.Employees.Count);
+
+                foreach (var dep in departments)
+                {
+                    //string manager = context.Employees.Where(em => em.EmployeeID == dep.ManagerID)
+                    //                                .Select(em => em.FirstName).First();
+
+                    var ala = context.Employees.First(x => x.EmployeeID == dep.ManagerID);
+
+                    Console.WriteLine($"{dep.Name} {ala.FirstName}");
+
+                    foreach (var empl in dep.Employees)
+                    {
+                        Console.WriteLine($"{empl.FirstName} {empl.LastName} {empl.JobTitle}");
+                    }
+                }
+            }
+        }
+    }
+}

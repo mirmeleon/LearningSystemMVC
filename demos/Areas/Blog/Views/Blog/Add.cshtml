@@ -1,0 +1,26 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Article";
+
+}
+
+<h2>Add Article</h2>
+
+@using (Html.BeginForm())
+{
+    <br />
+    <div class="form-group">
+    <label for="title">Title:</label>
+    <input class="form-control" id="title" type="text" name ="Title" /> 
+        </div>
+    <br />
+    <div class="form-group">
+        <label for="content">Content: </label>
+    <textarea  class="form-control" id="content" rows="10" cols="30" name="content"> </textarea>
+        </div>
+    <br />
+    <div class="form-group">
+    <input type="submit" value="Add" class="btn btn-lg btn-success" />
+        </div>
+}

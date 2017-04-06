@@ -1,0 +1,30 @@
+﻿  
+@model  IEnumerable<demos.Models.ViewModels.adminArea.AllUsersViewModel>
+
+    @{
+        ViewBag.Title = "SetRoles";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+    <h2>Set user roles</h2>
+
+<table class="table table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Name)</th>
+        <th>@Html.DisplayNameFor(model => model.Role.Name)</th>
+        <th>Assign new role:</th>
+      
+    </tr>
+
+    @foreach (var user in Model) 
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => user.Name) </td>
+            <td>@Html.DisplayFor(model => user.Role.Name)</td>
+            <td>@Html.DisplayFor(model => user.Role.Name)</td>
+            <td>@Html.ActionLink("Edit", $"EditRole/{user.Id}", "Admin")</td>
+        </tr>
+
+    }
+
+</table>

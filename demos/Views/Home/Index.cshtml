@@ -1,0 +1,38 @@
+﻿ @model IEnumerable<demos.Models.ViewModels.Courses.CourseViewModel>
+    @{
+        ViewBag.Title = "Index";
+    }
+
+    <h2>List of all courses</h2>
+
+@if (Model != null)
+{
+    <table class="table table-striped">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+      
+            <th>@Html.DisplayNameFor(model => model.StartDate)</th>
+          
+          
+            <th>Active</th>
+          
+        </tr>
+
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => course.Name) </td>
+
+                <td>@Html.DisplayFor(model => course.StartDate) </td>
+
+                <td>@Html.ActionLink("Details", "Details", "Courses", new { id = course.Id }, new { @class = "btn btn-lg btn-primary" })</td>
+
+            </tr>
+
+        }
+
+    </table>
+
+}
+
+
